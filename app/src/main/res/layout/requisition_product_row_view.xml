@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    app:cardCornerRadius="5dp"
+    android:layout_margin="3dp"
+    android:id="@+id/requisitionDetailsListRow"
+    android:background="@drawable/squere_shape_border_back">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@drawable/squere_shape_border_back">
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Burger"
+            android:padding="2dp"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/productCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quantity: 80"
+            android:padding="2dp"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/productQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quantity: 80"
+            android:padding="2dp"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
