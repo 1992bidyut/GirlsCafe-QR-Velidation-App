@@ -65,6 +65,7 @@ public class RequisitionActivity extends AppCompatActivity implements Requisitio
             case R.id.logout:
 
                 databaseOperation.deleteUserData();
+                databaseOperation.deleteQrData();
                 prefManager.setLoggedInFlag(false);
                 Intent intent=new Intent(RequisitionActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -76,7 +77,7 @@ public class RequisitionActivity extends AppCompatActivity implements Requisitio
     }
     @Override
     public void onSuccessFull(String message) {
-
+        helper.showSnakBar(containerView,message);
     }
 
     @Override

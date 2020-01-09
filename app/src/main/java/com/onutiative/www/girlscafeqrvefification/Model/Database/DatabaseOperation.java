@@ -149,4 +149,16 @@ public class DatabaseOperation {
         this.close();
         return qrList;
     }
+
+    public int getCountQrData(){
+        List<QRPushRequestBody.Qr> qrList=new ArrayList<>();
+        this.open();
+
+        Cursor c=db.rawQuery("SELECT * FROM "+DatabaseHelper.TBL_QR_QUEUE,null);
+        int count = c.getCount();
+        c.close();
+
+        this.close();
+        return count;
+    }
 }

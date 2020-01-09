@@ -13,6 +13,8 @@ import com.onutiative.www.girlscafeqrvefification.Model.WScalling.QRTaggedAndCon
 import com.onutiative.www.girlscafeqrvefification.Utility.Helper;
 import com.onutiative.www.girlscafeqrvefification.Utility.SharedPrefManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +53,12 @@ public class PresenterScanning implements ScanningCommunicator.ScanningViewPrese
         supplierInfo=new BatchInfoRequestBody.SupplierInfo(supplyID,supplierID,prefManager.getRequisitionID());
         requestBody.setBatchInfo(batchInfo);
         requestBody.setSupplierInfo(supplierInfo);
-        infoCalling.batchInfoCall(prefManager.getUsername(),prefManager.getUserPassword(),requestBody);
+        if (helper.isInternetAvailable()){
+            infoCalling.batchInfoCall(prefManager.getUsername(),prefManager.getUserPassword(),requestBody);
+        }else {
+            view.onFailed("No Internet!");
+        }
+
     }
 
     @Override
@@ -70,6 +77,24 @@ public class PresenterScanning implements ScanningCommunicator.ScanningViewPrese
     @Override
     public void submitScannedDate() {
         qrTaggedAndConfirmation = new QRTaggedAndConfirmation(context,this);
+
+        List<QRPushRequestBody.Qr> qrList=databaseOperation.getAllQrData();
+        QRPushRequestBody.Requisition requisition=new QRPushRequestBody.Requisition(prefManager.getRequisitionID(),prefManager.getProductCode(),
+                prefManager.getProductName(),prefManager.getReqQuantity(),
+                String.valueOf(qrList.size()+Integer.parseInt(prefManager.getDeliQuantity())),"0");
+
+        List<QRPushRequestBody.Data> dataList =new ArrayList<>();
+        QRPushRequestBody.Data data=new QRPushRequestBody.Data(qrList,requisition);
+        dataList.add(data);
+
+        QRPushRequestBody requestBody=new QRPushRequestBody(6,"delivered",prefManager.getStoreID(),
+                prefManager.getUserID(),helper.getDate(),dataList);
+
+        if (helper.isInternetAvailable()){
+            qrTaggedAndConfirmation.apiCalling(prefManager.getUsername(),prefManager.getUserPassword(),requestBody);
+        }else {
+            view.onFailed("No Internet!");
+        }
     }
 
     @Override
@@ -107,11 +132,14 @@ public class PresenterScanning implements ScanningCommunicator.ScanningViewPrese
         if (response!=null){
             if (response.getStatus().getCode()==202){
                 view.onSuccessFull(response.getStatus().getReason());
+                databaseOperation.deleteQrData();
             }else {
                 view.onFailed(response.getStatus().getReason());
+                databaseOperation.deleteQrData();
             }
         }else {
             view.onFailed("Data pushing failed!");
+            databaseOperation.deleteQrData();
         }
     }
 }

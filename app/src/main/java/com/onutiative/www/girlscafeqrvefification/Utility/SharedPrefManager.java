@@ -20,6 +20,11 @@ public class SharedPrefManager {
     private static final String BATCH_CODE = "batch_code";
     private static final String SUPPLY_CODE = "supply_code";
     private static final String PRODUCT_CODE = "product_code";
+    private static final String PRODUCT_NAME = "product_name";
+    private static final String REQ_QUANTITY = "req_quantity";
+    private static final String USER_ID = "user_id";
+    private static final String USER_TYPE = "user_type";
+    private static final String DELI_QUANTITY = "delivered_quantity";
 
     public SharedPrefManager(Context context) {
         this.context = context;
@@ -94,4 +99,43 @@ public class SharedPrefManager {
         return preferences.getString(PRODUCT_CODE,null);
     }
     ////////////////////////////
+    public void setProductName(String id){
+        editor.putString(PRODUCT_NAME,id);
+        editor.commit();
+    }
+    public String getProductName(){
+        return preferences.getString(PRODUCT_NAME,null);
+    }
+    ////////////////////////////
+    public void setReqQuantity(String id){
+        editor.putString(REQ_QUANTITY,id);
+        editor.commit();
+    }
+    public String getReqQuantity(){
+        return preferences.getString(REQ_QUANTITY,null);
+    }
+    ////////////////////////////
+    public void setUserID(String id){
+        editor.putString(USER_ID,id);
+        editor.commit();
+    }
+    public String getUserID(){
+        return preferences.getString(USER_ID,null);
+    }
+    //////////////////////////
+    public void setUserType(String id){
+        editor.putString(USER_TYPE,id);
+        editor.commit();
+    }
+    public String getUserType(){
+        return preferences.getString(USER_TYPE,null);
+    }
+    ////////////////////////////
+    public void setDeliQuantity(String id){
+        editor.putString(DELI_QUANTITY,id);
+        editor.commit();
+    }
+    public String getDeliQuantity(){
+        return preferences.getString(DELI_QUANTITY,null);
+    }
 }

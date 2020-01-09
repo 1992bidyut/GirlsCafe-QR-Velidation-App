@@ -57,7 +57,7 @@ public class RequisitionDetailsActivity extends AppCompatActivity implements Req
 
     @Override
     public void onSuccessFull(String message) {
-
+        helper.showSnakBar(containerView,message);
     }
 
     @Override

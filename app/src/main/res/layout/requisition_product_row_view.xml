@@ -10,6 +10,7 @@
     android:id="@+id/requisitionDetailsListRow"
     android:background="@drawable/squere_shape_border_back">
     <LinearLayout
+        android:id="@+id/productRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -33,6 +34,14 @@
             android:textSize="15sp"/>
         <TextView
             android:id="@+id/productQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quantity: 80"
+            android:padding="2dp"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/deliveredQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -36,7 +36,12 @@ public class PresenterRequisition implements RequisitionCommunicator.Requisition
         String u_password=prefManager.getUserPassword();
         Log.i(TAG,"Usernae: "+u_name+" Pass: "+u_password);
         RequisitionRequersBody requisitionRequersBody=new RequisitionRequersBody(helper.getDate());
-        requisitionListCalling.requisitionCall(u_name,u_password,requisitionRequersBody);
+        if (helper.isInternetAvailable()){
+            requisitionListCalling.requisitionCall(u_name,u_password,requisitionRequersBody);
+        }else {
+            requisitionView.onFailed("No Internet!");
+        }
+
     }
 
     @Override

@@ -45,10 +45,10 @@ public class RequisitionDetailResponse {
         private String reqQuantity;
         @SerializedName("delivery_quantity")
         @Expose
-        private Object deliveryQuantity;
+        private String deliveryQuantity;
         @SerializedName("received_quantity")
         @Expose
-        private Object receivedQuantity;
+        private String receivedQuantity;
         @SerializedName("supplier_id")
         @Expose
         private String supplierId;
@@ -151,19 +151,19 @@ public class RequisitionDetailResponse {
             this.reqQuantity = reqQuantity;
         }
 
-        public Object getDeliveryQuantity() {
+        public String getDeliveryQuantity() {
             return deliveryQuantity;
         }
 
-        public void setDeliveryQuantity(Object deliveryQuantity) {
+        public void setDeliveryQuantity(String deliveryQuantity) {
             this.deliveryQuantity = deliveryQuantity;
         }
 
-        public Object getReceivedQuantity() {
+        public String getReceivedQuantity() {
             return receivedQuantity;
         }
 
-        public void setReceivedQuantity(Object receivedQuantity) {
+        public void setReceivedQuantity(String receivedQuantity) {
             this.receivedQuantity = receivedQuantity;
         }
 

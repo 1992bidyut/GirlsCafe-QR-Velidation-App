@@ -34,7 +34,7 @@ public class PresenterRequisitionDetails implements RequisitionDetailsCommunicat
         if (helper.isInternetAvailable()){
             detailsListCalling.requisitionDetailsCall(prefManager.getUsername(),prefManager.getUserPassword(),requestBody);
         }else {
-            view.onFailed("No internet connection!");
+            view.onFailed("No Internet!");
         }
 
 

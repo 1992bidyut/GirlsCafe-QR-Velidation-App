@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -36,9 +37,18 @@ public class LoginActivity extends AppCompatActivity implements LoginCommunicato
         containerView=findViewById(R.id.activity_login);
         prefManager=new SharedPrefManager(context);
         if (prefManager.isLoggedIn()){
-            Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
-            startActivity(intent);
-            //finish();
+            if (prefManager.getUserType().equals("6")){
+                Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+                startActivity(intent);
+                finish();
+            }else if (prefManager.getUserType().equals("4")){
+                Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                loginFailed("You are not authorize to use this app!");
+            }
+
         }
     }
 
@@ -51,11 +61,28 @@ public class LoginActivity extends AppCompatActivity implements LoginCommunicato
     @Override
     public void loginSuccessFull(String message) {
         //helper.showSnakBar(containerView,message);
-        Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
-        startActivity(intent);
-        prefManager.setLoggedInFlag(true);
-        prefManager.setUserNane(u_name);
-        prefManager.setUserPassword(u_pass);
+
+        Log.i(TAG,"User Type: "+prefManager.getUserType());
+
+        if (prefManager.getUserType().equals("6")){
+            prefManager.setLoggedInFlag(true);
+            prefManager.setUserNane(u_name);
+            prefManager.setUserPassword(u_pass);
+            Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+            startActivity(intent);
+            finish();
+        }else if (prefManager.getUserType().equals("4")){
+            prefManager.setLoggedInFlag(true);
+            prefManager.setUserNane(u_name);
+            prefManager.setUserPassword(u_pass);
+            Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            loginFailed("You are not authorize to use this app!");
+        }
+
+
     }
     @Override
     public void loginFailed(String message) {

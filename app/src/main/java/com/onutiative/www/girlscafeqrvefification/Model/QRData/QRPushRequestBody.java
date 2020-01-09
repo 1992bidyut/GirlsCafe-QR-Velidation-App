@@ -25,6 +25,15 @@ public class QRPushRequestBody {
     @Expose
     private List<Data> data = null;
 
+    public QRPushRequestBody(Integer userType, String operation, String storeId, String userId, String date, List<Data> data) {
+        this.userType = userType;
+        this.operation = operation;
+        this.storeId = storeId;
+        this.userId = userId;
+        this.date = date;
+        this.data = data;
+    }
+
     public Integer getUserType() {
         return userType;
     }
@@ -72,7 +81,7 @@ public class QRPushRequestBody {
     public void setData(List<Data> data) {
         this.data = data;
     }
-    public class Data {
+    public static class Data {
 
         @SerializedName("qr")
         @Expose
@@ -80,6 +89,11 @@ public class QRPushRequestBody {
         @SerializedName("requisition")
         @Expose
         private Requisition requisition;
+
+        public Data(List<Qr> qr, Requisition requisition) {
+            this.qr = qr;
+            this.requisition = requisition;
+        }
 
         public List<Qr> getQr() {
             return qr;
@@ -188,7 +202,7 @@ public class QRPushRequestBody {
         }
 
     }
-    public class Requisition {
+    public static class Requisition {
 
         @SerializedName("requisition_id")
         @Expose
@@ -208,6 +222,15 @@ public class QRPushRequestBody {
         @SerializedName("received_quantity")
         @Expose
         private String receivedQuantity;
+
+        public Requisition(String requisitionId, String productId, String productName, String reqQuantity, String deliveredQuantity, String receivedQuantity) {
+            this.requisitionId = requisitionId;
+            this.productId = productId;
+            this.productName = productName;
+            this.reqQuantity = reqQuantity;
+            this.deliveredQuantity = deliveredQuantity;
+            this.receivedQuantity = receivedQuantity;
+        }
 
         public String getRequisitionId() {
             return requisitionId;
