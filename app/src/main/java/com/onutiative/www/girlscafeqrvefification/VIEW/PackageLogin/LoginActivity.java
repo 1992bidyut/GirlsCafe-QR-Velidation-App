@@ -13,6 +13,7 @@ import com.onutiative.www.girlscafeqrvefification.R;
 import com.onutiative.www.girlscafeqrvefification.VIEW.PackageRequisition.RequisitionActivity;
 import com.onutiative.www.girlscafeqrvefification.Utility.Helper;
 import com.onutiative.www.girlscafeqrvefification.Utility.SharedPrefManager;
+import com.onutiative.www.girlscafeqrvefification.VIEW.StoreKeeperRequisition.SKRequisitionActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginCommunicator.LoginView{
     private EditText userName,password;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCommunicato
                 startActivity(intent);
                 finish();
             }else if (prefManager.getUserType().equals("4")){
-                Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+                Intent intent=new Intent(LoginActivity.this, SKRequisitionActivity.class);
                 startActivity(intent);
                 finish();
             }else {
@@ -75,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCommunicato
             prefManager.setLoggedInFlag(true);
             prefManager.setUserNane(u_name);
             prefManager.setUserPassword(u_pass);
-            Intent intent=new Intent(LoginActivity.this, RequisitionActivity.class);
+            Intent intent=new Intent(LoginActivity.this, SKRequisitionActivity.class);
             startActivity(intent);
             finish();
         }else {

@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="supplier@biid.org.bd"
+            android:text=""
             android:hint="Username"
             android:gravity="center"
             android:background="@drawable/squere_shape_border_back"
@@ -38,20 +38,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="$upp1ier@b11d.0rg"
+            android:text=""
             android:hint="Password"
             android:gravity="center"
             android:background="@drawable/squere_shape_border_back"
             android:padding="5dp"/>
+<!--        <EditText-->
+<!--            android:id="@+id/password"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:paddingRight="20dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="drawable/squere_shape_border_back"-->
+<!--            android:maxLines="1"-->
+<!--            android:gravity="center"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:hint="Password"-->
+<!--            android:imeOptions="actionNext"-->
+<!--            android:singleLine="true"-->
+<!--            android:textColor="#ff34469f"-->
+<!--            android:textSize="16sp"/>-->
         <TextView
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:padding="10dp"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:background="@drawable/squre_shape_fill_back"
             android:layout_gravity="center"
+            android:textColor="@color/whiteColor"
             android:onClick="login"
+            android:textStyle="bold"
             android:text="Login"/>
     </LinearLayout>
 

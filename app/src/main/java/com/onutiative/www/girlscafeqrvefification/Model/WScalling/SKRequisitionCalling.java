@@ -2,15 +2,16 @@ package com.onutiative.www.girlscafeqrvefification.Model.WScalling;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.nfc.Tag;
 import android.util.Log;
 
-import com.onutiative.www.girlscafeqrvefification.Model.BatchInfoData.BatchInfoRequestBody;
-import com.onutiative.www.girlscafeqrvefification.Model.BatchInfoData.BatchInfoResponse;
-import com.onutiative.www.girlscafeqrvefification.Model.QRData.QRPushRequestBody;
-import com.onutiative.www.girlscafeqrvefification.Model.QRData.QRPushResponse;
+import com.google.gson.Gson;
+import com.onutiative.www.girlscafeqrvefification.Model.LoginData.LoginRequestBody;
+import com.onutiative.www.girlscafeqrvefification.Model.LoginData.LoginResponse;
+import com.onutiative.www.girlscafeqrvefification.Model.SKRequisitionData.SKRequisitionRequestBody;
+import com.onutiative.www.girlscafeqrvefification.Model.SKRequisitionData.SKRequisitionResponse;
 import com.onutiative.www.girlscafeqrvefification.Utility.Constant;
-import com.onutiative.www.girlscafeqrvefification.VIEW.PackageScanning.PresenterScanning;
-import com.onutiative.www.girlscafeqrvefification.VIEW.StoreKeeperRequisition.SKRequisitionAdapter;
+import com.onutiative.www.girlscafeqrvefification.VIEW.StoreKeeperRequisition.PresenterSKRequisition;
 
 import java.io.IOException;
 
@@ -26,29 +27,25 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QRTaggedAndConfirmation {
+public class SKRequisitionCalling {
     private Context context;
-    private PresenterScanning presenterScanning;
-    private String TAG="QRTaggedAndConfirmation";
-    private ProgressDialog dialog;
+    private PresenterSKRequisition presenterSKRequisition;
+    private String TAG="SKRequisitionCalling";
     private APIinterface apIinterface;
-    private QRCallListener listener;
-    private QRPushResponse qrPushResponse;
-    private SKRequisitionAdapter skRequisitionAdapter;
+    private ProgressDialog dialog;
+    private SKRequisitionListener listener;
+    private SKRequisitionResponse requisitionResponse=null;
 
-    public QRTaggedAndConfirmation(Context context, PresenterScanning presenterScanning) {
+    public SKRequisitionCalling(Context context, PresenterSKRequisition presenterSKRequisition) {
         this.context = context;
-        listener= (QRCallListener) presenterScanning;
+        listener = (SKRequisitionListener) presenterSKRequisition;
     }
 
-    public QRTaggedAndConfirmation(Context context, SKRequisitionAdapter skRequisitionAdapter) {
-        this.context = context;
-        listener= (QRCallListener) skRequisitionAdapter;
-    }
-
-    public void apiCalling(String username, String password, final QRPushRequestBody requestBody){
+    public void skRequisitionCall(String username, String password, final SKRequisitionRequestBody requestBody){
+        // preparing interceptor for retrofit
+        // interceptor for runtime data checking
         dialog = new ProgressDialog(context);
-        dialog.setMessage("Scanned data pushing....");
+        dialog.setMessage("Requisition pulling...");
         dialog.show();
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -72,25 +69,25 @@ public class QRTaggedAndConfirmation {
                 .client(okHttpClient)
                 .build();
         apIinterface=retrofit.create(APIinterface.class);
-        final Call<QRPushResponse>qrResponse=apIinterface.qrPush(requestBody);
-        qrResponse.enqueue(new Callback<QRPushResponse>() {
+        final Call<SKRequisitionResponse> ResponseCall=apIinterface.pullSKRequisition(requestBody);
+        ResponseCall.enqueue(new Callback<SKRequisitionResponse>() {
             @Override
-            public void onResponse(Call<QRPushResponse> call, retrofit2.Response<QRPushResponse> response) {
+            public void onResponse(Call<SKRequisitionResponse> call, retrofit2.Response<SKRequisitionResponse> response) {
                 if (response.isSuccessful()){
-                    qrPushResponse=response.body();
-                    listener.onQRResponse(qrPushResponse);
+                    requisitionResponse=response.body();
+                    listener.onResponse(requisitionResponse);
                     dialog.cancel();
                 }
             }
             @Override
-            public void onFailure(Call<QRPushResponse> call, Throwable t) {
-                Log.i(TAG,"Fail: "+t.getMessage());
-                listener.onQRResponse(qrPushResponse);
+            public void onFailure(Call<SKRequisitionResponse> call, Throwable t) {
+                listener.onResponse(requisitionResponse);
                 dialog.cancel();
             }
         });
     }
-    public interface QRCallListener{
-        void onQRResponse(QRPushResponse response);
+
+    public interface SKRequisitionListener{
+        void onResponse(SKRequisitionResponse response);
     }
 }

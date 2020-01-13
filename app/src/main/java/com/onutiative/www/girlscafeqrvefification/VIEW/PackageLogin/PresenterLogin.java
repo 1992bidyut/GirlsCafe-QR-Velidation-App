@@ -45,6 +45,9 @@ public class PresenterLogin implements LoginCommunicator.LoginViewPresenter, Log
             databaseOperation.insertUserData(response.getData());
             prefManager.setUserID(response.getData().getUserId());
             prefManager.setUserType(response.getData().getUserType());
+            if (response.getData().getUserType().equals("4")){
+                prefManager.setStoreID(response.getData().getStoreId());
+            }
             loginView.loginSuccessFull("Successful!");
 
         }else {

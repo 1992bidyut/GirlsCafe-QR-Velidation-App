@@ -10,6 +10,8 @@ import com.onutiative.www.girlscafeqrvefification.Model.RequisitionData.Requisit
 import com.onutiative.www.girlscafeqrvefification.Model.RequisitionData.RequisitionResponse;
 import com.onutiative.www.girlscafeqrvefification.Model.RequisitionDetailsData.RequisitionDetailResponse;
 import com.onutiative.www.girlscafeqrvefification.Model.RequisitionDetailsData.RequisitionDetailsRequestBody;
+import com.onutiative.www.girlscafeqrvefification.Model.SKRequisitionData.SKRequisitionRequestBody;
+import com.onutiative.www.girlscafeqrvefification.Model.SKRequisitionData.SKRequisitionResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -31,4 +33,7 @@ public interface APIinterface {
 
     @POST("0v1/rqTaggedAndConfirmation")
     Call<QRPushResponse> qrPush(@Body QRPushRequestBody body);
+
+    @POST("0v1/getRequisitionProductListForStoreKeeper")
+    Call<SKRequisitionResponse> pullSKRequisition(@Body SKRequisitionRequestBody body);
 }

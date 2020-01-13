@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:id="@+id/skRequisitionActivity"
     tools:context=".VIEW.StoreKeeperRequisition.SKRequisitionActivity">
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Product"
+            android:textColor="@color/blackColor"
+            android:textSize="20sp"
+            android:background="@drawable/squere_shape_border_back"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delivered"
+            android:background="@drawable/squere_shape_border_back"
+            android:textSize="20sp"
+            android:textColor="@color/blackColor"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Received"
+            android:background="@drawable/squere_shape_border_back"
+            android:textSize="20sp"
+            android:textColor="@color/blackColor"
+            android:gravity="center"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/skRequisitionList"
+        android:layout_below="@id/title"
+        android:layout_above="@id/submitBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/submitBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="submit"
+        android:background="@drawable/squere_shape_border_back"
+        android:text="submit"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

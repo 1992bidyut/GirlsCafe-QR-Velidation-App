@@ -1,6 +1,7 @@
 package com.onutiative.www.girlscafeqrvefification.VIEW.PackageScanning;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.onutiative.www.girlscafeqrvefification.Model.BatchInfoData.BatchInfoRequestBody;
@@ -12,6 +13,7 @@ import com.onutiative.www.girlscafeqrvefification.Model.WScalling.BatchInfoCalli
 import com.onutiative.www.girlscafeqrvefification.Model.WScalling.QRTaggedAndConfirmation;
 import com.onutiative.www.girlscafeqrvefification.Utility.Helper;
 import com.onutiative.www.girlscafeqrvefification.Utility.SharedPrefManager;
+import com.onutiative.www.girlscafeqrvefification.VIEW.PackageRequisitionDetails.RequisitionDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,6 +135,12 @@ public class PresenterScanning implements ScanningCommunicator.ScanningViewPrese
             if (response.getStatus().getCode()==202){
                 view.onSuccessFull(response.getStatus().getReason());
                 databaseOperation.deleteQrData();
+                Intent intent= new Intent(context, RequisitionDetailsActivity.class);
+                intent.putExtra("requisition_id",prefManager.getRequisitionID());
+                intent.putExtra("store_id",prefManager.getStoreID());
+//                intent.putExtra("store_name",prefManager.get);
+//                intent.putExtra("delivery_date",dataList.get(position).getReqDate());
+                context.startActivity(intent);
             }else {
                 view.onFailed(response.getStatus().getReason());
                 databaseOperation.deleteQrData();

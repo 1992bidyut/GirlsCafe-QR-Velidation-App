@@ -53,12 +53,14 @@ public class RequisitionAdapter extends RecyclerView.Adapter<RequisitionAdapter.
 
                 prefManager.setStoreID(dataList.get(position).getStoreId());
                 prefManager.setRequisitionID(dataList.get(position).getId());
+                prefManager.setStoreName(dataList.get(position).getStoreName());
+                prefManager.setDeliveryDate(dataList.get(position).getReqDate());
 
                 Intent intent= new Intent(context, RequisitionDetailsActivity.class);
-                intent.putExtra("requisition_id",dataList.get(position).getId());
-                intent.putExtra("store_id",dataList.get(position).getStoreId());
-                intent.putExtra("store_name",dataList.get(position).getStoreName());
-                intent.putExtra("delivery_date",dataList.get(position).getReqDate());
+//                intent.putExtra("requisition_id",dataList.get(position).getId());
+//                intent.putExtra("store_id",dataList.get(position).getStoreId());
+//                intent.putExtra("store_name",dataList.get(position).getStoreName());
+//                intent.putExtra("delivery_date",dataList.get(position).getReqDate());
                 context.startActivity(intent);
             }
         });

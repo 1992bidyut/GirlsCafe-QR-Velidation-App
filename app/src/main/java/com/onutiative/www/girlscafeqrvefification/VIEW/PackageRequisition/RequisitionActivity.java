@@ -63,7 +63,6 @@ public class RequisitionActivity extends AppCompatActivity implements Requisitio
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.logout:
-
                 databaseOperation.deleteUserData();
                 databaseOperation.deleteQrData();
                 prefManager.setLoggedInFlag(false);

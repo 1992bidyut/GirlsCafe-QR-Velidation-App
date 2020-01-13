@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".VIEW.StoreKeeperRequisition.SKRequisitionActivity"></activity>
+        <activity android:name=".VIEW.StoreKeeperRequisition.SKRequisitionActivity"
+            android:label="Today's Supply"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

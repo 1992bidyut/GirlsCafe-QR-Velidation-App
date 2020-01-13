@@ -18,6 +18,7 @@ import com.onutiative.www.girlscafeqrvefification.QRCode.BarcodeCaptureActivity;
 import com.onutiative.www.girlscafeqrvefification.R;
 import com.onutiative.www.girlscafeqrvefification.Utility.Helper;
 import com.onutiative.www.girlscafeqrvefification.Utility.SharedPrefManager;
+import com.onutiative.www.girlscafeqrvefification.VIEW.PackageRequisitionDetails.RequisitionDetailsActivity;
 
 public class ScanningActivity extends AppCompatActivity implements ScanningCommunicator.ScanningView{
     private String TAG="ScanningActivity";

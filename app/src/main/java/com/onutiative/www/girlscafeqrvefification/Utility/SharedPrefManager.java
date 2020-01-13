@@ -25,6 +25,9 @@ public class SharedPrefManager {
     private static final String USER_ID = "user_id";
     private static final String USER_TYPE = "user_type";
     private static final String DELI_QUANTITY = "delivered_quantity";
+    private static final String DELIVERY_DATE = "delivery_date";
+    private static final String STORE_NAME= "store_name";
+
 
     public SharedPrefManager(Context context) {
         this.context = context;
@@ -137,5 +140,21 @@ public class SharedPrefManager {
     }
     public String getDeliQuantity(){
         return preferences.getString(DELI_QUANTITY,null);
+    }
+    ////////////////////////////
+    public void setStoreName(String id){
+        editor.putString(STORE_NAME,id);
+        editor.commit();
+    }
+    public String getStoreName(){
+        return preferences.getString(STORE_NAME,null);
+    }
+    ////////////////////////////
+    public void setDeliveryDate(String id){
+        editor.putString(DELIVERY_DATE,id);
+        editor.commit();
+    }
+    public String getDeliveryDate(){
+        return preferences.getString(DELIVERY_DATE,null);
     }
 }
